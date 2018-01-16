@@ -5,10 +5,10 @@ import time, sys
 from std_msgs.msg import UInt16
 from std_srvs.srv import Trigger, TriggerResponse
 
-class WallStopTest(unittest.TestCase):
+class WallStopAccelTest(unittest.TestCase):
     def test_node_exist(self):
         nodes = rosnode.get_node_names()
-        self.assertIn('/wall_stop',nodes, "node does not exist")
+        self.assertIn('/wall_stop_accel',nodes, "node does not exist")
 
     def set_sensor_values(self,lf,ls,rs,rf):
         with open("/dev/rtlightsensor0","w") as f:
@@ -38,4 +38,4 @@ class WallStopTest(unittest.TestCase):
 if __name__ == '__main__':
     time.sleep(3)
     rospy.init_node('travis_test_wall_stop')
-    rostest.rosrun('pimouse_run_corridor','travis_test_wall_stop',WallStopTest)
+    rostest.rosrun('pimouse_run_corridor','travis_test_wall_stop_accel',WallStopAccelTest)
